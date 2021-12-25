@@ -15,8 +15,9 @@ RUN set -x; buildDeps='wget python unzip nodejs npm'; runDeps='ttf-wqy-zenhei fo
     && rm BookStack.zip \
     && wget -nv -O- https://download.calibre-ebook.com/linux-installer.py | python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()" \
     && apt purge -y --auto-remove $buildDeps \
-    && chmod +x /usr/local/bookstack/BookStack \
-    && cd /usr/local/bookstack \
+    && chmod +x /usr/local/bookstack/BookStack
+
+CMD cd /usr/local/bookstack \
     && ./BookStack install \
     && ./BookStack
 
